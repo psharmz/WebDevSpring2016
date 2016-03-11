@@ -1,0 +1,10 @@
+<!--this file contains the sidebar HTML code for all the pages-->
+<div ng-controller="SidebarController">
+	<ul class="nav nav-sidebar" ng-controller="SidebarController" >
+		<li ng-class="{'active': $location.url()=='/home'}"><a href="#/home">Home</a></li>
+		<li ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile">Profile</a></li>
+		<li ng-class="{'active': $location.url()=='/forms'}"><a href="#/forms">Forms</a></li>
+		<li ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
+	</ul>
+</div>
+

@@ -1,0 +1,29 @@
+<!-- the home view has information about waitwhat but also has the functionality to register a new user-->
+
+<div ng-controller="HomeController"> 
+  <h2>Keeping you on track</h2>
+  <iframe class="homepage-vid" 
+  src="http://www.youtube.com/embed/v=dhuTcESVnWM">
+</iframe>
+<form class="nav navbar-nav navbar-right">
+  <h3>Sign up now! Its free</h3>
+  <div class="form-group login-info">
+    <input type="text" placeholder="Username" class="form-control">
+  </div>
+  <div class="form-group login-info">
+    <input type="password" placeholder="Password" class="form-control">
+  </div>
+  <div class="form-group login-info">
+    <input type="password" placeholder="Verify Password" class="form-control">
+  </div>
+  <button ng-click="register(user)" type="submit" class="btn btn-success login-info">Sign Up</button>
+</form>
+</div>
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@
     // retrieve the module we want to configure
     angular
         //retrieve the module by name
-        .module("FormBuilderApp")
+        .module("WaitWhatApp")
         //once you have retrieve the module, configure the function
         .config(configureRoutes);
 
@@ -14,7 +14,8 @@
         //the  $routeProvider object can be used to configure the navigation
         $routeProvider
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController"
       
             })
             .when("/register", {
@@ -28,8 +29,8 @@
                 controllerAs: "model"
             })
             .when("/forms", {
-                templateUrl: "views/forms/forms.view.html",
-                controller: "FormController",
+                templateUrl: "views/videos/videos.view.html",
+                controller: "VideoController",
                 controllerAs: "model"
             })
             .when("/profile", {
@@ -37,7 +38,7 @@
                 controller: "profileController"
             })
             .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
+                templateUrl: "views/professor/professor.view.html"
             })
             .otherwise({
                 redirectTo: "/home"
