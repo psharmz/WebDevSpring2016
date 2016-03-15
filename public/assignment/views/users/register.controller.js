@@ -40,6 +40,20 @@
         }
     }
 
+//use mongoose. connecting to another network/server to modify the database
+//no longer a synchronous
+//async- sends command to db server and doesnt wait for the server to respond
+//goes on to respond other incoming requests
+//one node.js server cannot wait for db server to come back
+//needs to be free to listen to other users
+//register the callback function....server comes back with two things
+// 1. error
+// 2. or come back with actual instance/object that was inserted to the db
+// the user object is passed to check it against the schema and will provide default values
+// doc tells you the default values 
+UserModel.create(user,function (err, doc) {
+    console.log(doc);
+})
 })();
 
 
