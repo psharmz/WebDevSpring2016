@@ -10,7 +10,7 @@ and is the only page we load -->
     load all necessary scripts  -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
@@ -24,17 +24,16 @@ and is the only page we load -->
     <script src="app.js"></script>
     <script src="config.js"></script>
 
-
+    <!-- include the services --> 
     <script src="services/user.service.client.js"></script>
     <script src="services/forms.service.client.js"></script>
     
-
+    <!-- include all controllers -->
     <script src="views/users/profile.controller.js"></script>
     <script src="views/users/login.controller.js"></script>
     <script src="views/users/register.controller.js"></script>
 
     <script src="views/forms/forms.controller.js"></script>
-    <script src="views/admin/admin.controller.js"></script>
     <script src="views/home/home.controller.js"></script>
     <script src="views/sidebar/sidebar.controller.js"></script>
     <script src="views/main/main.controller.js"></script>
@@ -43,12 +42,7 @@ and is the only page we load -->
     <!-- css for dashboard -->
     <link href="css/dashboard.css" rel="stylesheet">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-
-    <title> Assignment 2 </title>
-
+    <title> Form Maker </title>
 </head>
 
 <body ng-controller="MainController">

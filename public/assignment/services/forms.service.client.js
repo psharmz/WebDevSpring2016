@@ -1,11 +1,11 @@
-'use strict';
-
 (function(){
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService($rootScope) {
+    function FormService() {
 
         //set up the model to include all forms and functions
         var model = {
@@ -25,40 +25,41 @@
         return model;  
 
         //creates a new form for a user, given the the form and userId
-        function createFormForUser(userId, form) {
+        function createFormForUser(userId, form, callback) {
             var form = {
                 "_id": (new Date).getTime(),
+                "title": form.title, 
                 "userId" : userId
             };
             model.forms.push(form);
             //calls back with the form that was just created
-            return form; 
+            callback(form);
         }
 
-        function findAllFormsForUser(userId) {
+        function findAllFormsForUser(userId, callback) {
             var formsForUser = []; 
             for (var u in model.forms) {
                 if (model.forms[u].userId === userId) {
                     formsForUser.push(model.forms[u]);
                 }
             }
-            //call back with array of forms for the ser
-            return formsForUser; 
+            //call back with array of forms for the user
+            callback(userForms); 
 
         }
 
-        function deleteFormById(formId) {
+        function deleteFormById(formId, callback) {
             for (var u in model.forms) {
                 if (model.forms[u]._id === formId) {
                     model.forms.splice(u, 1);
                 }
             }
             //calls back with array of forms
-            return model.forms; 
+            callback(model.forms); 
 
         }
 
-        function updateFormById(formId, newForm) {
+        function updateFormById(formId, newForm, callback) {
             for (var u in model.forms) {
                 if (model.forms[u]._id === formId) {
                     var formInRecord = model.forms[u];
@@ -67,7 +68,7 @@
                 }
             }
             //calls back with updated form
-            return formInRecord; 
+            callback(formInRecord); 
         }
     }
 })();

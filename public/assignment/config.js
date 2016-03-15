@@ -1,8 +1,10 @@
 
 'use strict';
 
-(function()
-{
+(function() {
+
+    'use strict';
+
     // retrieve the module we want to configure
     angular
         //retrieve the module by name
@@ -19,18 +21,15 @@
             })
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
-                controller: "RegisterController",
-                controllerAs: "model"
+                controller: "RegisterController"
             })
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
-                controller: "LoginController", 
-                controllerAs: "model"
+                controller: "LoginController" 
             })
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
-                controller: "FormController",
-                controllerAs: "model"
+                controller: "FormController"
             })
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
