@@ -1,0 +1,42 @@
+
+<div <div ng-controller="FieldsController">
+    <h1 class="page-header"> Forms : Registration Form </h1>
+    <ul class="nav nav-tabs">
+        <li><a href="forms.view.html">Forms</a></li>
+        <li class="active"><a href="fields.view.html">Fields</a></li>
+    </ul>
+
+    First Name <input type="First Name" class="form-control" id="FirstName" placeholder="first name"><br>
+    Last Name<input type="Last Name" class="form-control" id="LastName" placeholder="last name"><br>
+    Date of Birth:
+    <select name="Date of Birth">
+
+    </select>
+    <br>
+    Gender:
+    <select name="Gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br>
+    Roles:<br>
+    <input type="checkbox" name="admin" value="Admin"> Admin <br>
+    <input type="checkbox" name="student" value="Student" checked> Student <br>
+    <input type="checkbox" name="user" value="User"> User <br>
+
+    <br> License Agreement:<br>
+    <form action="">
+        <input type="radio" name="yes" value="yes"> yes<br>
+        <input type="radio" name="no" value="no"> no<br>
+    </form> <br>
+    Add New Field:
+    <select name="type of field">
+        <option value="Single Line Text"> Single Line Text</option>
+        <option value="Date">Date</option>
+        <option value="Dropdown">Dropdown</option>
+        <option value="Checkboxes">Checkboxes</option>
+        <option value="Radio buttons"> Radio Buttons</option>
+        <option value="Paragraph Text Field">Paragraph Text Field</option>
+    </select>
+</div>
+
