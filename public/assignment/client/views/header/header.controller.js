@@ -1,12 +1,10 @@
-
-'use strict';
-
 (function(){ 
+    'use strict';
     angular
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($location, $scope, UserService) {
+    function HeaderController($scope, $location, $rootScope, UserService) {
 
         //event handler declaration
         $scope.$location = $location;
@@ -14,7 +12,7 @@
 
         //event handler implementation
         function logout() {
-        	UserService.setCurrentUser(null);
+        	$rootScope.currentUser = null;
         	$location.url("/home");  
         }
     }
