@@ -1,106 +1,57 @@
-'use strict';
+(function() {
+    'use strict';
 
-(function(){
     angular
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService($rootScope) {
+    function UserService($http){
 
-         var model = {
-            users: [
-                {"_id": 123, "firstName": "Alice", "lastName": "Wonderland","username": "alice", "password": "alice", "roles": ["student"]},
-                {"_id": 234, "firstName": "Bob", "lastName": "Hope","username": "bob", "password": "bob", "roles": ["admin"]},
-                {"_id": 345, "firstName": "Charlie", "lastName": "Brown","username": "charlie", "password": "charlie", "roles": ["faculty"]},
-                {"_id": 456, "firstName": "Dan", "lastName": "Craig","username": "dan", "password": "dan", "roles": ["faculty", "admin"]},
-                {"_id": 567, "firstName": "Edward", "lastName": "Norton","username": "ed", "password": "ed", "roles": ["student"]}
-            ],
-
-            findUserByCredentials: findUserByCredentials,
-            findAllUsers: findAllUsers, 
+        //use the api to retrieve data from server
+        var api = {
             createUser: createUser,
+            findUserByCredentials: findUserByCredentials,
+            updateUser: updateUser,
+            findAllUsers: findAllUsers,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
-        }; 
+            findUserByUsername: findUserByUsername
+        };
+        return api;
 
-        //once we have set up users[] and the functions, return the model
-        return model; 
+        // send a http post to create new user
+        function createUser (user) {
+            return $http.post ("/api/assignment/user", user);
+        }
 
+        // send http get to find a user by their credentials
         function findUserByCredentials(username, password) {
-            for (var u in model.users) {
-                if (model.users[u].username === username) {
-                    if (model.users[u].password === password) {
-                        //callback with the user found
-                        return model.users[u]; 
-                    } 
-                }
-            }
-            //callback with no user found
-            return null; 
+            return $http.get ("/api/assignment/user?username=" + username + "&password=" + password);
         }
 
-        function findAllUsers() {
-            //calls back with array of all users
-            return model.users; 
+        // send http put request to update a user for an id 
+        function updateUser (userId, user) {
+            return $http.put ("/api/assignment/user/" + userId, user)
         }
 
-        function createUser(user) {
-            //create the new user
-            var user = {
-                _id: (new Date).getTime(), 
-                firstName: user.firstName,
-                lastName: user.lastName, 
-                username: user.username,
-                password: user.password,
-
-            }; 
-            //and the created user to the list of users
-            model.users.push(user);
-            //callback returns user
-            return user; 
+        // send http get request to find user by their username
+        function findUserByUsername(username){
+            return $http.get ("/api/assignment/user?username=" + username);
         }
 
-        function deleteUserById(userId) {
-            //iterate through users[] to find the user with userId
-            for (var u in model.users) {
-                if (model.users[u]._id === userId) {
-                    //delete the user from users[]
-                    model.users.splice(u, 1);
-                }
-            }
-            //callback returns updated users[]
-            return model.users;
+        // send http get request to view all users 
+        function findAllUsers(){
+            return $http.get ("/api/assignment/user");
         }
 
-        function updateUser(userId, user) {
-            //iterate through users to find the user with userId
-            for (var u in model.users) {
-                //if we find a match in our users array
-                if (model.users[u]._id === userId) {
-                    //update the user
-                    var userRecord = model.users[u];
-                    userRecord._id = user._id;
-                    userRecord.firstName = user.firstName;
-                    userRecord.lastName = user.lastName;
-                    userRecord.username = user.username;
-                    userRecord.password = user.password; 
-                    //calls back with the updated user
-                    return userRecord;
-                } else {
-                    //calls back with null if there is no user
-                    return null; 
-                }
-            }
-
-        }
-
-        //not required for assignment but added it in because im lazy
-        function getCurrentUser() {
-            return $rootScope.currentUser;
+        // send http delete to remove a user by userid 
+        function deleteUserById(userId){
+            return $http.delete ("/api/assignment/user/" + userId);
         }
 
     }
 })();
+
+
 
 
 

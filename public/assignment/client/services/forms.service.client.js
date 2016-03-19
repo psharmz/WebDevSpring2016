@@ -5,70 +5,47 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService() {
-
-        //set up the model to include all forms and functions
-        var model = {
-            forms: [
-                {"_id": "000", "title": "Contacts", "userId": 123},
-                {"_id": "010", "title": "ToDo",     "userId": 123},
-                {"_id": "020", "title": "CDs",      "userId": 234}
-            ], 
-
-        createFormForUser: createFormForUser,
-        findAllFormsForUser: findAllFormsForUser,
-        deleteFormById: deleteFormById,
-        updateFormById: updateFormById
+    function FormService($http) {
+        //use the api to retrieve data from server
+        var api = {
+            createFormForUser: createFormForUser,
+            findAllFormsForUser: findAllFormsForUser,
+            deleteFormById: deleteFormById,
+            updateFormById: updateFormById,
+            findFormById: findFormById
         };
+        return api;
 
-        //once we have set up the model with forms[] and functions, return
-        return model;  
 
         //creates a new form for a user, given the the form and userId
-        function createFormForUser(userId, form, callback) {
-            var form = {
-                "_id": (new Date).getTime(),
-                "title": form.title, 
-                "userId" : userId
-            };
-            model.forms.push(form);
-            //calls back with the form that was just created
-            callback(form);
+        function createFormForUser(userId, form){
+            return $http.post ("/api/assignment/user/" + userId + "/form", form);
         }
 
-        function findAllFormsForUser(userId, callback) {
-            var formsForUser = []; 
-            for (var u in model.forms) {
-                if (model.forms[u].userId === userId) {
-                    formsForUser.push(model.forms[u]);
-                }
-            }
-            //call back with array of forms for the user
-            callback(userForms); 
-
+        //sends a http get request for find all the forms for a user
+        function findAllFormsForUser(userId){
+            return $http.get ("/api/assignment/user/" + userId + "/form");
         }
 
-        function deleteFormById(formId, callback) {
-            for (var u in model.forms) {
-                if (model.forms[u]._id === formId) {
-                    model.forms.splice(u, 1);
-                }
-            }
-            //calls back with array of forms
-            callback(model.forms); 
-
+        //sends http delete request to remove a form with given id
+        function deleteFormById(formId){
+            return $http.delete ("/api/assignment/form/" + formId);
         }
 
-        function updateFormById(formId, newForm, callback) {
-            for (var u in model.forms) {
-                if (model.forms[u]._id === formId) {
-                    var formInRecord = model.forms[u];
-                    formInRecord.title = newForm.title; 
-                    formInRecord.userId = newForm.userId;
-                }
-            }
-            //calls back with updated form
-            callback(formInRecord); 
+        //sends a http put request to update an existing form 
+         function updateFormById(formId, newForm){
+            return $http.put ("/api/assignment/form/" + formId, newForm);
         }
+
+        // sends a http get request to reutrn a form with given id 
+        function findFormById(formId){
+            return $http.get("/api/assignment/form/" + formId);
+        }
+
     }
 })();
+
+
+
+
+

@@ -4,7 +4,7 @@ var forms = require("./user.users.json");
 var uuid = require('node-uuid');
 
 //implement the javascript node.js module for Form
-module.exports = function(){
+module.exports = function(app, db){
 
     var api = {
         //first implement CRUD operations from general requirements
