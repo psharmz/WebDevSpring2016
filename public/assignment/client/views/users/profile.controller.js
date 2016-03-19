@@ -3,9 +3,9 @@
 
     angular
         .module("FormBuilderApp")
-        .controller("profileController", profileController);
+        .controller("ProfileController", ProfileController);
 
-    function profileController($scope, $rootScope, UserService) {
+    function ProfileController($scope, $rootScope, UserService) {
 
         //check for errors
         $rootScope.error = null;
