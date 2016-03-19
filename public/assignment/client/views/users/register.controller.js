@@ -3,7 +3,7 @@
     "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", registerController);
 
     function registerController($rootScope, UserService, $location, $scope) {
         
@@ -66,6 +66,6 @@
                 $location.url("/profile");
             }
         }
- }
+ })(); 
 
 

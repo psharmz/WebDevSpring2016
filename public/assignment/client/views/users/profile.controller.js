@@ -1,11 +1,11 @@
-"use strict";
-
 (function(){
+    "use strict";
+
     angular
         .module("FormBuilderApp")
         .controller("profileController", profileController);
 
-    function profileController($rootScope, UserService, $location) {
+    function profileController($scope, $rootScope, UserService) {
 
         //check for errors
         $rootScope.error = null;
@@ -17,34 +17,58 @@
             $location.url("/home");
 
         }
-
         //initialize update function
-        $scope.update = update;
+        $scope.updateUser = updateUser;
 
         //update function 
-        function update (user) {
+        function updateUser(user) {
+            if (user === null) {
+                $scope.error = "Please fill in the required fields";
+                return;
+            }
+            if (!user.firstName) {
+                $scope.error = "Please provide your first name";
+                return;
+            }
+            if (!user.lastName) {
+                $scope.error = "Please enter last name";
+                return;
+            }
+            if (!user.username) {
+                $scope.error = "Please enter username";
+                return;
+            }
+            if (!user.password) {
+                $scope.error = "Please enter a password";
+                return;
+            }
+            if (!user.email) {
+                $scope.error = "Please enter your email address";
+                return;
+            }
 
-            // cehck for errors
-            $rootScope.error = null;
-            $rootScope.message = null;
+            var userId = $scope.currentUser._id;
 
-            //use the User Service to update the user info
-            $rootScope.currentUser = UserService.updateUser(user);
+            UserService
+                .updateUser(userId, user)
+                .then(updateUserResponse);
+       }
 
-            // the updated user information is valid, update
-            if (user) {
-                $rootScope.message = "User updated successfully";
-                //update the CurrentUser to have the changes that were just made
-                UserService.setCurrentUser($rootScope.currentUser);
+       function updateUserResponse(response){
+            if (response.data){
+                $scope.message = "User updated successfully";
+                $scope.currentUser = response.data;
+                $rootScope.currentUser = response.data;
             } else {
-                //something went wrong
-                $rootScope.message = "Unable to update the user";
+                $scope.error = "Cannot update the user";
             }
         }
 
-
-
     }
+
+
+
+}
 })();
 
 
