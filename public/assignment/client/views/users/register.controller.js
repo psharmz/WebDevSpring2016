@@ -3,60 +3,69 @@
     "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("RegisterController", registerController);
+        .controller("RegisterController", RegisterController);
 
-    function registerController($rootScope, UserService, $location) {
-        var model = this;
+    function registerController($rootScope, UserService, $location, $scope) {
+        
+        $scope.register = register;
 
-        model.register = register;
+        //register a new user 
+        function register(user) {
 
-        function init() {
+            $scope.message = null;
+
+            //warn the user if the enetered passwoerd dont watch
+            if(user.password != user.vpassword) {
+                $scope.message = "Your passwords don't match";
+            }
+            //warn the user if they didnt fill out password info
+            if (!user.password || !user.vpassword) {
+                $scope.message = "Please enter password twice"
+
+            }
+            //warn the user that username info is not filled out
+            if (!user.username) {
+                $scope.message = "Please provide a username";
+                return;
+            }
+            //warn the user if they did not fill out their email
+            if (!user.email) {
+                $scope.message = "Please provide an email";
+                return;
+            }
+            //warn user if nothing is filled out at all 
+            if (user === null) {
+                $scope.message = "Please fill in the required fields";
+                return;
+            }
+
+            // use the user service to see if this name is already taken
+            UserService
+                .findUserByUsername(user.username)
+                .then(decideToCreate);
         }
 
-        init();
-
-        function register (user) {
-            if(user.password != user.vpassword || !user.password || !user.vpassword)
-            {
-                $rootScope.danger = "Your passwords don't match";
-            }
-            else
-            {
+        function decideToCreate(user) {
+            //if we do find someone who already as that nickname
+            //alert the user via a message
+            if (user) {
+                $scope.message = "Someone already has the Username. Pick another one"
+                return; 
+            } else
                 UserService
-                    .register(user)
-                    .then(function(response) {
-                        if(response != null)
-                        {
-                            $rootScope.currentUser = response;
-                            $location.url("/profile/" + response.data._id);
-                        }
-                        else
-                        {
-                            $rootScope.danger = "Unable to register";
-                        }
-                    });
+                    .createUser($scope.user)
+                    .then(newUserResponse); 
             }
-
         }
-    }
 
-//use mongoose. connecting to another network/server to modify the database
-//no longer a synchronous
-//async- sends command to db server and doesnt wait for the server to respond
-//goes on to respond other incoming requests
-//one node.js server cannot wait for db server to come back
-//needs to be free to listen to other users
-//register the callback function....server comes back with two things
-// 1. error
-// 2. or come back with actual instance/object that was inserted to the db
-// the user object is passed to check it against the schema and will provide default values
-// doc tells you the default values 
-UserModel.create(user,function (err, doc) {
-    console.log(doc);
-})
-})();
-
-
-
+        function newUserResponse(user) {
+            //if we have successfully created a new user
+            //log them in, set as the current user, and take them to the profile
+            if (user.data) {
+                $rootScope.currentUser = user.data;
+                $location.url("/profile");
+            }
+        }
+ }
 
 
