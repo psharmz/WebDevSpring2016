@@ -1,6 +1,3 @@
-
-'use strict';
-
 (function() {
 
     'use strict';
@@ -37,6 +34,12 @@
             })
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html"
+            })
+
+            // add a route that navigates to the field view page 
+            .when("/form/:formId/fields", {
+                    templateUrl: "views/forms/fields.view.html",
+                    controller: "FieldController"
             })
             .otherwise({
                 redirectTo: "/home"
