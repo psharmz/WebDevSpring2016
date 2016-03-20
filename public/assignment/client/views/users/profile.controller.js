@@ -11,9 +11,12 @@
         $rootScope.error = null;
         $rootScope.message = null; 
 
+        
+        $scope.currentUser = $rootScope.currentUser;
+        $scope.updateUser = updateUser; 
+
         //return to home if you try and get to the page by changing the URL
-        $rootScope.currentUser = UserService.getCurrentUser();
-        if (!$rootScope.currentUser) {
+        if (!$scope.currentUser) {
             $location.url("/home");
 
         }
@@ -66,9 +69,6 @@
 
     }
 
-
-
-}
 })();
 
 
