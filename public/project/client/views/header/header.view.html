@@ -1,0 +1,42 @@
+  
+  <div ng-controller="HeaderController" class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <!-- this collapse the nav bar and displays a dropdown button instead on smaller screens -->
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/home"> WaitWhat </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
+      <!-- once we are logged in, dont show log in forms anymore -->
+      <form class="navbar-form navbar-right" role="login" ng-hide="loggedin">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="email" ng-model="user.email">
+          <input type="password" class="form-control" placeholder="password" ng-model="user.password">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="login(user)" >login</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- only show the username dropdown if we are loggedin -->
+        <li class="Username" ng-show="loggedin">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+
+
+
+
+

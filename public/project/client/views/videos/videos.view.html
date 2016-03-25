@@ -1,0 +1,82 @@
+<!-- there will be two inline divs. 
+left div => list of movies (sortable)- add sortable later
+right div => on-click: have the video show up
+later in time... have a way to show this for mobile  -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- right now the divs are set up as a 50/50 split so the 6+6=12
+	i may change this later -->
+<h1 class="page-header"> Welcome Back! </h1>
+<h2 class="page-header"> Subscribed Video Feed </h2>
+
+<div class="col-sm-6">
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<!-- the video feed will default be organized by latest upload to past upload
+				however, this list can be sortable  -->
+				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Video Title</th>
+				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Class</th>
+				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Upload Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- you cannot add a new video from the main page, because it needs to be uploaded, etc
+				you CAN however, search for a particular video --> 
+				<tr ng-repeat="video in videos">
+					<td ng-click="showFields($index)">{{video.title}}</td>
+					<td>{{video.class}}</td>
+					<td>{{video.date}}</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+
+<div class="col-sm-6" id="player"> 
+<script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+</div>
+

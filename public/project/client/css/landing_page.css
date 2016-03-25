@@ -1,0 +1,22 @@
+/*css for signup page/homepage*/
+
+
+.form-signin {
+  width: 30em; 
+  margin: auto;
+  background-color: #EEEEEE; 
+  padding: .7em;
+  border-radius: 10px;
+}
+
+.button .form-signin {
+  border-radius: 20px;
+}
+
+.row_centered {
+  height: 100%;
+}
+
+.container {
+  height: 700px; 
+}

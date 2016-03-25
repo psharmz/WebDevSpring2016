@@ -5,7 +5,7 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
+    function ProfileController($scope, $rootScope, UserService, $location) {
 
         //check for errors
         $rootScope.error = null;

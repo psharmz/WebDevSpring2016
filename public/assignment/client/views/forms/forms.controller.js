@@ -4,10 +4,27 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, FormService, $rootScope) {
+// the FormController requires the scope, rootscope, FormService API, and location
+    function FormController($scope, FormService, $rootScope, $location) {
 
-        //get the current user
+        //get the currentUser for the rootScope (whoever is logged in)
+        //set the logged in user as the user for the Form page scope
         $scope.user = $rootScope.currentUser;
+
+        // display the current array of forms for the currently logged in user
+        // get forms for current user using service
+        function init() {
+            if ($scope.user){
+                FormService
+                    .findAllFormsForUser($scope.user._id)
+                    .then(function(forms) {
+                        $scope.forms = forms; 
+                });
+            };
+        }
+
+        init(); 
+
 
         //event handlers 
         $scope.addForm = addForm;
@@ -15,15 +32,7 @@
         $scope.deleteForm = deleteForm;
         $scope.selectForm = selectForm;
 
-        // display the current array of forms for the currently logged in user
-        // get forms for current user using service
-        if ($scope.user){
-            FormService.findAllFormsForUser($scope.user._id, function callback(forms){
-            if (forms){
-                $scope.forms = forms;
-            }
-        });
-        }
+
 
         //to add form 
         function addForm(form) {
@@ -32,33 +41,29 @@
             $scope.error = null;
             $scope.message = null; 
 
+            //set what the current selected form is 
             $scope.selectedFormIndex = null; 
 
-            //make sure form information is entered before adding a new Form 
-            if (form) {
-                //if title information was included for new form
-                if (form.title) {
-                    //create a new form for the user using FormService
-                    FormService.createFormForUser($scope.user._id, form, function callback(newForm){
-                        if (newForm) {
-                            $scope.forms.push(newForm);
+            //make sure form information (right now only need title) is entered before adding a new Form 
+            //if title information was included for new form
+            //also make sure that we are logged on...although technically you shouldn't be able to get 
+            //to this page if you aren't but just in case 
+            if (form.title && $scope.user) {
+                //create a new form for the user using FormService
+                FormService
+                    .createFormForUser($scope.user._id, form)
+                    // use the .then to avoid nested if's
+                    .then(function() {
+                        init(); 
+                        if scope.forms === forms {
                             $scope.form = {}; 
                             $scope.message = "Added New Form"; 
                         } else {
-                            $scope.message = "Could not add new form"; 
+                            $scope.message = "Could not add new form";
                         }
-                    });
-                } else {
-                    $scope.error = "You must provide a form name";
-                }
-            } else {
-                $scope.error = "You must provide a form";
-            }
-        }
 
 
-
-
+        // to update form
         function updateForm(form) {
 
             // error validation
@@ -78,6 +83,7 @@
             }
         }
 
+        // to delete form
         function deleteForm(index) {
             
             //uses FormService to delete the Form from the array
@@ -87,13 +93,21 @@
 
             //get the form id for the form at the index
             var formId = $scope.forms[index]._id
-            $scope.forms = FormService.deleteFormById(formId)
+            //use the .then to return after the service request has gone through
+            FormService.deleteFormById(formId)
+                .then(function() {
+
+                })
         }
 
+        // to select form 
         function selectForm(index) {
 
+            //in case the form object is undefined, null, or set to something else
+            $scope.form = {}; 
+
             //mark the currently selected form
-            var selectedForm = $scope.forms[index]
+             = $scope.forms[index]
 
             //updates the form with the currently selected form
             updateForm(selectedForm); 

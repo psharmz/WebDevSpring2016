@@ -1,0 +1,40 @@
+//use mock data for now just so we can test out the video feed functionality 
+//a video object includes (id, video title, course, duration, upload date)
+//duration can hopefully be pulled from the youtube API but we shall see 
+
+[
+  {"_id": "1", 
+  "title": "intro to bio", 	
+  "course": "bio101",	
+  "upload_date": ""},
+  {"_id": "2", 
+  "title": "intro to psych", 	
+  "course": "psych101",	
+  "upload_date": ""},
+  {"_id": "3", 
+  "title": "intro to calc", 	
+  "course": "calc",	
+  "upload_date": ""},
+  {"_id": "4", 
+  "title": "LANS", 	
+  "course": "Networks",	
+  "upload_date": ""},
+  {"_id": "5", 
+  "title": "Distrubuted Systems", 	
+  "course": "Networks",	
+  "upload_date": ""},
+  {"_id": "6", 
+  "title": "Cognition", 	
+  "course": "psych101",	
+  "upload_date": ""},
+  {"_id": "7", 
+  "title": "photosynthesis", 	
+  "course": "bio101",	
+  "upload_date": ""},
+  {"_id": "8", 
+  "title": "Bridges", 	
+  "course": "Networks",	
+  "upload_date": ""}
+
+]
+
