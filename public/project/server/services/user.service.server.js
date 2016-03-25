@@ -1,4 +1,4 @@
-// This is the UserServer SERVER SIDE
+// This is the UserService SERVER SIDE
 
 module.exports = function(app, userModel){
 

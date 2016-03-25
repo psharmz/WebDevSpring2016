@@ -21,18 +21,17 @@ later in time... have a way to show this for mobile  -->
 				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Video Title</th>
 				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Class</th>
 				<th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>Upload Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- you cannot add a new video from the main page, because it needs to be uploaded, etc
-				you CAN however, search for a particular video --> 
-				<tr ng-repeat="video in videos">
-					<td ng-click="showFields($index)">{{video.title}}</td>
-					<td>{{video.class}}</td>
-					<td>{{video.date}}</td>
-				</tr>
-			</tbody>
-		</table>
+			</tr>
+		</thead>
+			<!-- display all the videos from the model  -->
+		<tbody ng-controller="VideoController">
+			<tr ng-repeat= "video in model.videos">
+				<td>{{video.title}}</td>
+				<td>{{video.class}}</td>
+				<td>{{video.date}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <div class="col-sm-6" id="player"> 

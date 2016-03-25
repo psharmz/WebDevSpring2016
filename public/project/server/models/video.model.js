@@ -10,9 +10,9 @@ module.exports = function(){
     var api = {
         createVideo: createVideo,
         findAllVideos: findAllVideos,
-        findVideosById: findVideosById,
+        findVideoById: findVideoById,
         findVideoByTitle: findVideoByTitle,
-        findVideosByClass: findVideosByClass,
+        findVideosByCourse: findVideosByCourse,
         updateVideo: updateVideo,
         deleteVideo: deleteVideo
     };
@@ -31,7 +31,7 @@ module.exports = function(){
     }
 
     // takes in id and finds videos with that id
-    function findVideosById(id){
+    function findVideoById(id){
         for (var u in mock) {
             if (mock[u]._id === id) {
                 return mock[u];
@@ -51,7 +51,7 @@ module.exports = function(){
     }
 
     // find all the videos for a particular course
-    function findVideosByClass(course) {
+    function findVideosByCourse(course) {
         for (var u in mock) {
             if (mock[u].course === course) {
                 return mock[u];
