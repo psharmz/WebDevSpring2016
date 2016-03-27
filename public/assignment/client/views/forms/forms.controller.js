@@ -31,6 +31,7 @@
             $scope.selectForm = selectForm;
             $scope.updateForm = updateForm;
             $scope.deleteForm = deleteForm;
+            $scope.showFields = showFields;
         // if we are not logged in, take person to the login page 
         } else $location.url("/login");
 
@@ -47,15 +48,21 @@
             $scope.formIndex = null;
 
             if (form.title) {
-                FormService.createFormForUser($scope.user._id, form, addFormCallback);
+                FormService
+                        //use the service to add it to the list of form in the model 
+                        .createFormForUser($scope.user._id, form)
+                        .then(addFormCallback);
+                } else {
+                    $scope.error = "Please enter a form name";
+                }
             } else {
-                $scope.error = "Please include a form title";
+                $scope.error = "Please enter a form";
             }
         }
 
         function addFormCallback(newForm){
-            if (newForm) {
-                $scope.forms.push(newForm);
+            if (newForm.data) {
+                $scope.forms = newForm.data
                 $scope.form = {};
                 $scope.message = "Form added successfully";
             } else {
@@ -85,28 +92,28 @@
             $scope.message = null;
 
             if ($scope.formIndex != null){
-                // update the form using service
-                FormService.updateFormById($scope.forms[$scope.formIndex]._id, form, updatecallback);
+                var id = $scope.forms[$scope.formIndex]._id;
+                form._id = $scope.forms[$scope.formIndex]._id;
+                form.userId = $scope.forms[$scope.formIndex].userId;
+                FormService
+                    .updateFormById(id, form)
+                    .then(updatecallback);
             } else {
-                $scope.error = "Error updating form";
+                $scope.error = "Could not update form";
             }
         }
 
         function updatecallback(updatedForm){
             // if we added the form, add it to our list of forms so we can display an updated list 
-            if (updatedForm) {
-                $scope.forms[$scope.formIndex] = {
-                    _id: updatedForm._id,
-                    title: updatedForm.title,
-                    userId: updatedForm.userId
-                };
+            if (updatedForm.data) {
+                $scope.forms = updatedForm.data; 
 
                 // clear the input field and reset index 
                 $scope.form = {};
                 $scope.formIndex = null;
                 $scope.message = "Form updated";
-            } else                 $scope.error = "Updating Form Failed";{
-
+            } else 
+                $scope.error = "Updating Form Failed";{
             }
         }
 
@@ -114,20 +121,29 @@
         function deleteForm(index){
             $scope.error = null;
             $scope.message = null; 
+            $scope.formIndex = null; 
 
-            FormService.deleteFormById($scope.forms[index]._id, deletecallback);
+            FormService
+                .deleteFormById($scope.forms[index]._id)
+                .then(deletecallback);
         }
 
         function deletecallback(forms){
-            FormService.findAllFormsForUser($scope.user._id, function(forms){
-                if (forms){
-                    $scope.forms = forms;
-                    $scope.formIndex = null;
-                    $scope.message = "Form deleted successfuly";
+            FormService
+                .findAllFormsForUser($scope.user._id)
+                .then(function(forms){
+                if (forms.data){
+                    $scope.forms = forms.data;
+                    $scope.message = "Form Deleted";
                 } else {
                     $scope.error = "Error deleting form";
                 }
             });
+        }
+
+        function showFields(index){
+            $scope.formId = $scope.forms[index]._id;
+            $location.path('/form/' +  $scope.formId + '/fields');
         }
 
     }

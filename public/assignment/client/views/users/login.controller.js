@@ -15,20 +15,26 @@
             $scope.error = null;
 
             //use the UserService to find the user 
-            UserService.findUserByCredentials(user.username, user.password, callback);
+            UserService
+                .findUserByCredentials(user.username, user.password)
+                .then(callback, error);
         }
 
         // call back sets 
-        function callback(userInDB){
-            if (userInDB){
+        function callback(response){
+            if (response.data){
                 // set the currentUser to the one we found
                 // got to profile page 
-                $rootScope.currentUser = userInDB;
+                $rootScope.currentUser = response.data;
                 $location.url("/profile");
             } else {
                 // throw an error if we dont find anything 
                 $scope.error = "User not found";
             }
+        }
+
+        function error (error) {
+            $scope.message = "Could not log in"
         }
     }
 })();
