@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FormBuilderApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- link to minified bootstrap  -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- link to jquery --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- link to angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+    <!-- nclude app and config --> 
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- include the services that are needed  -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/forms.service.client.js"></script>
+
+    <!-- the main controller tells us what 'page' to load based on the location -->
+    <script src="views/main/main.controller.js"></script>
+
+    <!-- the sidebar is on all pages but looks different if you are logged in or logged out or admin -->
+    <script src="views/sidebar/sidebar.controller.js"></script>
+
+    <!-- the header is on all pages but looks different if you are logged in or logged out, or admin -->
+    <script src="views/header/header.controller.js"></script>
+
+    <!-- controllers needed for user profile, register, and login--> 
+    <script src="views/users/register.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+
+    <!-- controller needed for forms --> 
+    <script src="views/forms/forms.controller.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <title>Form Maker</title>
+</head>
+
+<body ng-controller="MainController">
+    <div class="container-fluid">
+        <!-- the first row just has one column with the header  -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div ng-include="'views/header/header.view.html'"></div>
+            </div>
+        </div>
+        <!-- the second row has two columns. 1. sidebar, 2. the main content -->
+        <div class="row">
+            <!-- include the sidebar as the first column -->
+            <div class="col-sm-3 col-md-2 sidebar" ng-include="'views/sidebar/sidebar.view.html'">
+            </div>
+            <!-- include the the main content as the second column  -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

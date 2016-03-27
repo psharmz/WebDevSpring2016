@@ -1,11 +1,6 @@
-//declare a base angular module called 'FormBuilderApp' with ngRoute as a dependency
-//ngRoute is used to configure navigation
-'use strict';
-
 (function(){
+    'use strict';
 
-	'use strict';
-    angular.module("FormBuilderApp", ["ngRoute"]);
+         angular
+             .module("FormBuilderApp", ["ngRoute"]);
 })();
-
-

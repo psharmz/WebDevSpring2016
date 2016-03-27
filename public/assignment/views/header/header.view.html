@@ -1,0 +1,50 @@
+<!-- rename all html files so that they all end with .view.html -->
+<!-- note: the navbar is the header -->
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="navbar-header">
+        <!-- the labels on the navbar turn into option on a drop down on smaller screens --> 
+        <!-- drop down won't work. figure out why -->
+        <button 
+        type="button" 
+        class="navbar-toggle collapsed" 
+        data-toggle="collapse" 
+        data-target="#navbar"
+        aria-expanded="false" 
+        aria-controls="navbar">
+                <!-- icon bar stuff is those three lines on the dropdown button --> 
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Form Maker</a>
+    </div>
+     <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <!-- if we are currentUser, hide login option from the view  -->
+            <li ng-hide="currentUser"
+                ng-class="{'active': $location.url()==='/login'}">
+                <a href="#/login">Login</a></li>
+            <!-- if we are loggeIn, hide register option from the view  -->
+            <li ng-hide="currentUser"
+                ng-class="{'active': $location.url()==='/register'}">
+                <a href="#/register">Register</a></li>
+            <li ng-class="{'active': $location.url()==='/home'}">
+                <a href="#/home">Home</a></li>
+            <!-- if we are currentUser, show the logout option in the view  -->
+            <li ng-show="currentUser">
+               <!--  when you click logout, logout the user -->
+                <a ng-click="logout()">Logout</a></li>
+            <!-- if are are on the profile tab, highlight profile -->
+            <!-- only show profile on the header/nav if we are currentUser --> 
+            <li ng-class="{'active': $location.url()==='/profile'}"
+                ng-show="currentUser">
+                <a href="#/profile">Profile</a></li>
+            <!-- if we are on the admin tab, highlight admin -->
+            <!-- only show admin on the header/nav if we are currentUser -->
+            <li ng-class="{'active': $location.url() === '/admin'}"
+                ng-show="currentUser.roles.indexOf('admin') >= 0">
+                <a href="#/admin">Admin</a></li>
+        </ul>
+    </div>
+</nav>

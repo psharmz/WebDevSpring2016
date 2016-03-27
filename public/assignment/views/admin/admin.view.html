@@ -1,0 +1,79 @@
+<!-- right now controller is empty. implement later --> 
+
+<div ng-controller="AdminController" class="admin"> 
+    <h1>Admin</h1>
+    <h2>Users</h2>
+
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span> 
+                    Username</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                    Password</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span> 
+                    Role</th>
+                <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                    Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder="username">
+                </td>
+                <td>
+                    <input type="password" class="form-control" placeholder="password">
+                </td>
+                <td>
+                    <div class="form-group">
+                    <!-- might change this later, because it only lets you pick one role
+                    to do...find a way to pick more than one  -->
+                        <select class="form-control">
+                            <option>User</option>
+                            <option>Admin</option>
+                            <option>Student</option>
+                            <option>Faculty</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                <span>
+                    <button type="submit" name="add" class="btn btn-default glyphicon glyphicon-plus">
+                    </button>
+                    <button type="submit" name="update" class="btn btn-default glyphicon glyphicon-ok">
+                    </button>
+                </span>
+                </td>
+            </tr>
+            <tr>
+                <td>alice</td>
+                <td></td>
+                <td>student</td>
+                <td>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>bob</td>
+                <td/>
+                <td>faculty | admin</td>
+                <td>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>charlie</td>
+                <td/>
+                <td/>
+                <td>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+        
