@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CapstoneApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Capstone Research Project</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+
+    <script src="app.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="custom.css" rel="stylesheet">
+    <script type="text/javascript"></script>
+
+    <!-- include the controller -->
+    <script src="hapyak.controller.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Welcome! Thank you for taking part in this study.</h1>
+            <br/>
+            <br/>
+            <p class="lead">The following video segments are designed to mimic online educational videos. Please watch them as if they were assigned for class. If you pay attention or not, that's up to you. All I ask is that you don't seek or skip through the video as there are intermittent questions that will be used for data analysis. Thanks! </p>
+            
+            <h2> 213emh </h2> 
+
+            <iframe id="hapyak-player-32979-2672" marginwidth="0" marginheight="0" frameborder="no" scrolling="no" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" src="//www.hapyak.com/embed?key=dfd98f9f3a3c427fa552&amp;project=32979" width="720" height="464" class="hapyak-embed"></iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

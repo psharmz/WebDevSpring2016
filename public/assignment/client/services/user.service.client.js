@@ -1,5 +1,6 @@
 // client side service will talk to server side service to retrieve data from model via $http 
 (function() {
+    
     'use strict';
 
     angular

@@ -1,40 +1,65 @@
-<head>
-  <link href="http://vjs.zencdn.net/5.8.7/video-js.css" rel="stylesheet">
 
-  <!-- If you'd like to support IE8 -->
-  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
-  <!-- add this randomizing later. first just get it to work for one video --> 
-  <!--script src="randomize.js"></script-->
-    <meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en" ng-app="CapstoneApp">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-   <!--  bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-   
-    <!-- angular js -->
+    <title>Capstone Research Project</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
 
-    <!-- css for index -->
+    <script src="app.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
     <link href="custom.css" rel="stylesheet">
+    <script type="text/javascript"></script>
 
-</head>
+    <!-- include the controller -->
+    <script src="hapyak.controller.js"></script>
 
-<body>
+  </head>
 
-<h3> 321hem </h3>
+  <body>
 
-<p> Thanks for participating in this study! The following video snippets are meant to mimic various online lectures and educational videos. Please watch them as if they were assigned videos for a class. </p>
+    <div class="site-wrapper">
 
+      <div class="site-wrapper-inner">
 
-<iframe id="hapyak-player-32974-7594" marginwidth="0" marginheight="0" frameborder="no" scrolling="no" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" src="//www.hapyak.com/embed?key=dfd98f9f3a3c427fa552&amp;project=32974" width="720" height="462" class="hapyak-embed"></iframe>
+        <div class="cover-container">
 
+          <div cclass="inner cover row " ng-controller="HapYakController as vm">
+            <h1 class="cover-heading">Welcome! Thank you for taking part in this study.</h1>
+            <br/>
+            <br/>
+            <p class="lead">The following video segments are designed to mimic online educational videos. Please watch them as if they were assigned for class. If you pay attention or not, that's up to you. All I ask is that you don't seek or skip through the video as there are intermittent questions that will be used for data analysis. Thanks! </p>
+            
+            <h2> {{vm.videoTitle()}} </h2> 
 
-<script src="http://vjs.zencdn.net/5.8.7/video.js"></script>
-</body>
+            <iframe  marginwidth="0" marginheight="0" frameborder="no" scrolling="no" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" ng-src="{{vm.safeRandomHapYakUrl()}}" width="720" height="462" align="middle" class="hapyak-embed"></iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>

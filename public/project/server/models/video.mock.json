@@ -1,7 +1,3 @@
-//use mock data for now just so we can test out the video feed functionality 
-//a video object includes (id, video title, course, duration, upload date)
-//duration can hopefully be pulled from the youtube API but we shall see 
-
 [
   {"_id": "1", 
   "title": "intro to bio", 	

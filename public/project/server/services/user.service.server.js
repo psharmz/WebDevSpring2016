@@ -5,7 +5,7 @@ module.exports = function(app, userModel){
 // implement the crud operations
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findUsers);
-    app.get("/api/project/user/:id", findUserById);
+    //app.get("/api/project/user/:id", findUserById);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
 

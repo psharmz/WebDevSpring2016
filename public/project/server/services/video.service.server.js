@@ -37,7 +37,6 @@ module.exports = function(app, videoModel){
                 res.json(videos);
             }
         }
-    }
 
     // find a video with a specific id
     function findVideoById(req, res){
