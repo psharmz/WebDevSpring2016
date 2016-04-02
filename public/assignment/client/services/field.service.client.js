@@ -13,9 +13,10 @@
         var api = {
             createFieldForForm : createFieldForForm,
             getFieldsForForm: getFieldsForForm,
-            getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField
+
+
         };
         return api;
 
@@ -25,10 +26,6 @@
 
         function getFieldsForForm(formId){
             return $http.get ("/api/assignment/form/" + formId + "/field");
-        }
-
-        function getFieldForForm(formId, fieldId){
-            return $http.get ("/api/assignment/form/" + formId + "/field/" + fieldId);
         }
 
         function deleteFieldFromForm(formId, fieldId){

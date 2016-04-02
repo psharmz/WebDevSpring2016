@@ -7,40 +7,40 @@
 
     function FieldsController(FieldService, FormService, $scope, $routeParams, $modal) {
 
-        var model = this;
+        var vm = this;
 
-        model.formId = $routeParams.formId;
+        vm.formId = $routeParams.formId;
 
         //implement these belew 
-        model.removeField = removeField;
-        model.addField = addField;
-        model.showModal = showModal;
+        vm.removeField = removeField;
+        vm.addField = addField;
+        vm.showModal = showModal;
 
         //get the fields for the form 
-        if (model.formId){
+        if (vm.formId){
             FieldService
-                .getFieldsForForm(model.formId)
+                .getFieldsForForm(vm.formId)
                 .then(fieldsCallback);
         }
 
         function fieldsCallback(response){
             if (response.data){
-                model.fields = response.data;
+                vm.fields = response.data;
             }
         }
 
-        //now that we have set up the model implement the functions that this model supports : removefield, addfield, and showmodal
+        //now that we have set up the vm implement the functions that this vm supports : removefield, addfield, and showmodal
 
         function removeField(index){
-            var fieldId = model.fields[index]._id;
+            var fieldId = vm.fields[index]._id;
             FieldService
-                .deleteFieldFromForm(model.formId, fieldId)
+                .deleteFieldFromForm(vm.formId, fieldId)
                 .then(showAllFields);
         }
 
         function addField(newFieldType) {
                 FieldService
-                    .createFieldForForm(model.formId, {'type': newFieldType})
+                    .createFieldForForm(vm.formId, {'type': newFieldType})
                     .then(function() {
                         findFieldsForFormAndSetScope();
                 });
@@ -61,7 +61,7 @@
                     .then(function (field) {
                     //once we edit using the modal, use the Field Servie to update the field 
                     FieldService
-                        .updateField(model.formId, field._id, field)
+                        .updateField(vm.formId, field._id, field)
                         .then(function() {
                             //not sure what goes here
                         });
@@ -77,28 +77,28 @@
 
     function ModalInstanceController($scope, $uibModalInstance, field) {
 
-        var model = this; 
+        var vm = this; 
 
-        if (model.fieldType === "TEXT"){
-            model.fieldTitle = "Single Line Field";
-        } else if (model.fieldType === "TEXTAREA"){
-            model.fieldTitle = "Multiple Lines Field";
-        } else if (model.fieldType === "DATE"){
-            model.fieldTitle = "Date Field";
-        } else if (model.fieldType === "OPTIONS"){
-            model.fieldTitle = "Dropdown Field";
-        } else if (model.fieldType === "CHECKBOXES"){
-            model.fieldTitle = "Checkbox Field";
-        } else if (model.fieldType === "RADIOS"){
-            model.fieldTitle = "Radio Button Field";
+        if (vm.fieldType === "TEXT"){
+            vm.fieldTitle = "Single Line Field";
+        } else if (vm.fieldType === "TEXTAREA"){
+            vm.fieldTitle = "Multiple Lines Field";
+        } else if (vm.fieldType === "DATE"){
+            vm.fieldTitle = "Date Field";
+        } else if (vm.fieldType === "OPTIONS"){
+            vm.fieldTitle = "Dropdown Field";
+        } else if (vm.fieldType === "CHECKBOXES"){
+            vm.fieldTitle = "Checkbox Field";
+        } else if (vm.fieldType === "RADIOS"){
+            vm.fieldTitle = "Radio Button Field";
         } 
 
-        model.cancel = cancel; 
-        model.update = update; 
+        vm.cancel = cancel; 
+        vm.update = update; 
 
 
         function update() {
-            var optionsTextFragments = model.fieldToEdit.optionsText.split('\n'),
+            var optionsTextFragments = vm.fieldToEdit.optionsText.split('\n'),
                 options = [];
             angular.forEach(optionsTextFragments, function(optionTextFragment) {
                 var tokens = optionTextFragment.trim().split(';');
@@ -106,8 +106,8 @@
                     options.push({'label': tokens[0], 'value': tokens[1]});
                 }
             });
-            model.fieldToEdit.options = options;
-            $uibModalInstance.close(model.fieldToEdit);
+            vm.fieldToEdit.options = options;
+            $uibModalInstance.close(vm.fieldToEdit);
         };
 
         function cancel() {
