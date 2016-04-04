@@ -38,14 +38,17 @@
         <div class="cover-container">
 
           <div cclass="inner cover row " ng-controller="HapYakController as vm">
-            <h1 class="cover-heading">Welcome! Thank you for taking part in this study.</h1>
+            <h1 class="cover-heading">Welcome! </h1>
+            <h2> Thank you for taking part in this study </h2> 
             <br/>
             <br/>
-            <p class="lead">The following video segments are designed to mimic online educational videos. Please watch them as if they were assigned for class. If you pay attention or not, that's up to you. All I ask is that you don't seek or skip through the video as there are intermittent questions that will be used for data analysis. Please let the video play til end!!! There is a last set of 8 questions. Thanks! </p>
+            <p class="lead">The following video containts three segments are designed to mimic online educational videos. Please watch them as if they were assigned for class. All I ask is that you don't seek or skip through the video as there are intermittent questions and let the video play til the end!!! There is a set of 8 questions at the end, followed by a "I am finished" prompt. Thanks! </p>
             
             <h2> {{vm.videoTitle()}} </h2> 
 
             <iframe  marginwidth="0" marginheight="0" frameborder="no" scrolling="no" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" ng-src="{{vm.safeRandomHapYakUrl()}}" width="720" height="462" align="middle" class="hapyak-embed"></iframe>
+            <script type="text/javascript" src="//d2qrdklrsxowl2.cloudfront.net/js/hapyak.js"></script>
+            <script type="text/javascript" src="//d2qrdklrsxowl2.cloudfront.net/js/hapyak.api.js"></script>
 
           </div>
 

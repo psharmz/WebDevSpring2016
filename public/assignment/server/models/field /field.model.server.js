@@ -13,15 +13,8 @@ module.exports = function(db, mongoose, formModel){
     var api = {
         createFieldForForm: createFieldForForm,
         getFieldsForForm: getFieldsForForm,
-        findFieldByFormIdAndFieldId: findFieldByFormIdAndFieldId,
         deleteFieldFromForm: deleteFieldFromForm,
-        updateField: updateField
-
-        createFieldForForm : createFieldForForm,
-            getFieldsForForm: getFieldsForForm,
-            getFieldForForm: getFieldForForm,
-            deleteFieldFromForm: deleteFieldFromForm,
-            updateField: updateField
+        updateField: updateField     
 
     };
     return api;
