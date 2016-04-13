@@ -13,14 +13,40 @@
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername: findUserByUsername,
-            findAllUsers: findAllUsers,
+            findByIdUser: findByIdUser,
+            findAllUser: findAllUser,
             updateUser: updateUser,
             deleteUserById: deleteUserById,
+            //new added
+            login: login,
+            logout: logout,
+            loggedin: loggedin, 
+            register: register
         };
         return api;
 
+
+    //refactor existing user Web service to support admin use cases
+    //these endpoints allow admin users to create, read, update, and delete users
+
+        function login (user) {
+            return $http.post("/api/assignment/login" + user);
+        }
+
+        function findByIdUser (userId) {
+            return $http.get("/api/assignment/admin/user/" +  userId);
+        }
+
+        function logout() {
+            return $http.post("/api/assignment/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/assignment/register", user);
+        }
+
         function createUser (user) {
-            return $http.post ("/api/assignment/user", user);
+            return $http.post ("/api/assignment/admin/user", user);
         }
 
         function findUserByCredentials(username, password) {
@@ -31,16 +57,16 @@
             return $http.get ("/api/assignment/user?username=" + username);
         }
 
-        function findAllUsers(){
-            return $http.get ("/api/assignment/user");
+        function findAllUser(){
+            return $http.get ("/api/assignment/admin/user");
         }
 
         function updateUser (userId, user) {
-            return $http.put ("/api/assignment/user/" + userId, user)
+            return $http.put ("/api/assignment/admin/user/" + userId, user)
         }
 
         function deleteUserById(userId){
-            return $http.delete ("/api/assignment/user/" + userId);
+            return $http.delete ("/api/assignment/admin/user/" + userId);
         }
 
     }

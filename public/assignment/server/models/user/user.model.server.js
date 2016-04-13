@@ -12,13 +12,13 @@ module.exports = function () {
     var api = {
         //first implement CRUD operations from general requirements
         createUser: createUser,      // C for create --> post
-        fin2ádAllUser: findAllUser,    // R for read --> get (entire collection)
+        findAllUser: findAllUser,    // R for read --> get (entire collection)
         findByIdUser: findByIdUser,  // R for read --> get (single in collection)
         updateUser: updateUser,      // U for update --> put
         deleteUser: deleteUser,      // D for delete --> delete
         //then implement those specific to the User
         findUserByUsername: findUserByUsername, 
-        findUserByCredentials, findUserByCredentials
+        findUserByCredentials: findUserByCredentials
     }
     // return it so we can listen for it 
     return api;
