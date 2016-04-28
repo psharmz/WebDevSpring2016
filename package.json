@@ -1,19 +1,18 @@
 {
-  "name": "PassportJS",
+  "name": "OpenShift-Sample-App",
   "version": "1.0.0",
-  "description": "Simple PassportJS MEAN Web App",
+  "description": "OpenShift Sample Application",
   "keywords": [
     "OpenShift",
     "Node.js",
     "application",
     "openshift"
   ],
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url": "http://www.openshift.com/"
   },
-  "author": "Jose Annunziato",
-  "license": "ISC",
   "homepage": "http://www.openshift.com/",
   "repository": {
     "type": "git",
@@ -36,6 +35,4 @@
   "private": true,
   "main": "server.js"
 }
-
-
 
