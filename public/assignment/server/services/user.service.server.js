@@ -13,7 +13,6 @@ module.exports = function(app, userModel){
 
     //configure passport local strategy to intercept POST api/assignment/login
     app.post("/api/assignment/login", passport.authenticate('local'), login);
-
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/logout", logout);
     app.post('/api/assignment/register', register);

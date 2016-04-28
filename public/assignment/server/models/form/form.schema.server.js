@@ -5,15 +5,17 @@
 // create a mongoose variable so we can create a FormSchema 
 var mongoose = require("mongoose");
 
-module.exports = function () {
+module.exports = function (mongoose) {
 
 	//we need the field scheme to create the form schema since it
-	//stored the embedded instances of fields 
+	//stored the embedded instances of fields
+
+    var FieldSchema = require("../field/field.schema.server.js")(mongoose);
 
 	// for now...using the sample as the default values
     var FormSchema = mongoose.Schema({
     	//only has description for userId, no default
-    	userId: type: String,
+    	userId: {type: String},
         title: {type: String, default: "New Form"},
         //only has description for userId, no default
         fields: [FieldSchema],
@@ -27,4 +29,5 @@ module.exports = function () {
     //return the Schema after we create it
     return FormSchema;
 };
+
 

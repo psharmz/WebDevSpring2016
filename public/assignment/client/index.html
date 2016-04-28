@@ -5,8 +5,8 @@ and is the only page we load -->
 <html lang="en" ng-app="FormBuilderApp">
 
 <head>
-<!-- 
-    load all necessary scripts  -->
+    <!--
+        load all necessary scripts  -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,29 +14,29 @@ and is the only page we load -->
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-   <!--  bootstrap -->
+    <!--  bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-   
+
     <!-- angular js -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
-    <!-- angular js routing library --> 
+    <!-- angular js routing library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
     <!-- angular js sortable  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.13.4/sortable.js"></script>
     <!-- angular js for boostrap-ui package -->
     <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
 
-    <!-- after loading all the scripts we need...load app and config --> 
+    <!-- after loading all the scripts we need...load app and config -->
     <script src="app.js"></script>
     <script src="config.js"></script>
 
-    <!-- include the services --> 
+    <!-- include the services -->
     <script src="services/user.service.client.js"></script>
     <script src="services/form.service.client.js"></script>
     <script src="services/field.service.client.js"></script>
-    
+
     <!-- include all controllers -->
     <script src="views/main/main.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
@@ -57,20 +57,20 @@ and is the only page we load -->
 <body ng-controller="MainController">
 
 <!--this is the naviagtion bar (username, login, logout, register) -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" ng-include="'views/header/header.view.html'">
-    </nav>
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-include="'views/header/header.view.html'">
+</nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- SIDEBAR DIV -->
-            <div class="col-sm-3 col-md-2 sidebar" ng-include="'views/sidebar/sidebar.view.html'">
-            </div>
-        
-            <!-- MAIN CONTENT DIV -->
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- SIDEBAR DIV -->
+        <div class="col-sm-3 col-md-2 sidebar" ng-include="'views/sidebar/sidebar.view.html'">
+        </div>
+
+        <!-- MAIN CONTENT DIV -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
         </div>
     </div>
+</div>
 
 </body>
 

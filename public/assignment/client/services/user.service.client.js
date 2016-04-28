@@ -30,8 +30,12 @@
     //these endpoints allow admin users to create, read, update, and delete users
 
         function login (user) {
-            return $http.post("/api/assignment/login" + user);
+            return $http.post("/api/assignment/login/" + user);
         }
+
+        function loggedin() {
+            return $http.get("/api/assignment/loggedin"); 
+        } 
 
         function findByIdUser (userId) {
             return $http.get("/api/assignment/admin/user/" +  userId);

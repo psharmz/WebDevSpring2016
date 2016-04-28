@@ -5,7 +5,7 @@
 // create a mongoose variable so we can create a UserSchema 
 var mongoose = require("mongoose");
 
-module.exports = function () {
+module.exports = function (mongoose) {
 
 	// for now...using the description/sample as the default values
     var FieldSchema = mongoose.Schema({
@@ -31,6 +31,8 @@ module.exports = function () {
     //return the Schema after we create it
     return FieldSchema;
 };
+
+
 
 
 
