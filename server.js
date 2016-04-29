@@ -9,7 +9,12 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var connectionString = 'mongodb://127.0.0.1:27017/test';
+
+
+// default to a 'localhost' configuration:
+var connection_string = '127.0.0.1:27017/webdevelopment';
+
+// var connectionString = 'mongodb://127.0.0.1:27017/test';
 
 // if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -53,7 +58,11 @@ http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
 // app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 // app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
+
+
+
 
 
 app.listen(port, ip);
