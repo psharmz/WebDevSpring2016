@@ -1,5 +1,6 @@
   
-  <div ng-controller="HeaderController" class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <!-- this collapse the nav bar and displays a dropdown button instead on smaller screens -->
@@ -12,9 +13,10 @@
       <a class="navbar-brand" href="#/home"> WaitWhat </a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div id="navbar" class="collapse navbar-collapse" ng-controller="HeaderController">
-      <!-- once we are logged in, dont show log in forms anymore -->
+    <div id="navbar" class="navbar-collapse collapse">
+
+
+    <!-- once we are logged in, dont show log in forms anymore -->
       <form class="navbar-form navbar-right" role="login" ng-hide="loggedin">
         <div class="form-group">
           <input type="email" class="form-control" placeholder="email" ng-model="user.email">
@@ -23,18 +25,26 @@
         <button type="submit" class="btn btn-default" ng-click="login(user)" >login</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <!-- only show the username dropdown if we are loggedin -->
-        <li class="Username" ng-show="loggedin">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">settings</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        <li ng-show="currentUser"
+            ng-class="{'active': $location.url()==='/home'}">
+            <a href="#/home">    Home   </a></li>
+        <li ng-show="currentUser"
+            ng-class="{'active': $location.url()==='/profile'}">
+            <a href="#/profile">My Profile</a></li>
+        <li ng-show="currentUser"
+            ng-class="{'active': $location.url() === '/videos'}">
+            <a href="#/schedule">My Videos</a></li>
+        <li ng-show="currentUser"
+            ng-class="{'active': $location.url() === '/professor'}">
+            <a href="#/professor">Add Video</a></li>
+        <li ng-show="currentUser"
+            ng-class="{'active': $location.url() === '/search'}">
+            <a href="#/search"> Find a Video </a></li>
+        <li ng-show="currentUser">
+            <a ng-click="logout()">  Logout </a></li>
+
+        </ul>
+    </div>
 
 
 

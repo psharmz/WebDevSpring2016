@@ -4,7 +4,7 @@ module.exports = function (mongoose) {
         date: String,
         title: String,
         class: String,
-        professor: String,
+        owner: String,
         description: String, 
     }, {collection: "video"});
 

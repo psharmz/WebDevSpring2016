@@ -66,7 +66,7 @@ module.exports = function(db, mongoose) {
             {   date: updatedVideo.date,
                 title: updatedVideo.title,
                 class: updatedVideo.class,
-                professor: updatedVideo.professor,
+                owner: updatedVideo.owner,
                 description: updatedVideo.description},
 
             function(err, doc){
