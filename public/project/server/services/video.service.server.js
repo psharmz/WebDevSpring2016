@@ -1,6 +1,6 @@
 // This is the VideoService SERVER SIDE
 
-module.exports = function(app, videoModel){
+module.exports = function(app, VideoModel){
 
 // implement the crud operations
     app.post("/api/project/video", createVideo);
@@ -9,6 +9,26 @@ module.exports = function(app, videoModel){
     app.put("/api/project/video/:id", updateVideo);
     app.delete("/api/project/video/:id", deleteVideo);
 
+
+
+        updateVideo: updateVideo,
+        findallVideos: findallVideos
+
+    // find a video with a specific id
+    function findVideoById(req, res){
+        var id = req.params.id;
+
+        VideoModel.findVideoById(id)
+            .then(
+                function(doc){
+                    res.json(doc);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
+
     // create video and return all videos
     function createVideo(req, res){
         var video = req.body;
@@ -16,27 +36,36 @@ module.exports = function(app, videoModel){
         res.json(newVideo);
     }
 
-    // get and return all videos
+    // get and return all the videos or get and return all videos for a particular class 
     function findVideos(req, res){
         var title = req.query.title;
-        var course = req.query.course;
+        var courseid = req.query.course;
         // if the client side service sent a get request with title and/or course
         // it means they are trying to find a video that matches those...use the model 
         // to find the videos after parsing the URL 
-        if (title){
-            //find a video by title
-            var video = videoModel.findVideoByTitle(title);
-            res.json(video);
-        } else if (course){
-            //find a video by course (right now only returns one of th videos)
-                var video = videoModel.findVideosByCourse(course);
-                res.json(video);
-            } else {
-                //otherwise, just return all the videos 
-                var videos = videoModel.findAllVideos();
-                res.json(videos);
-            }
+        if (courseid){
+            // find all the videos for a course
+            videoModel.findVideobyClassId(courseId)
+                .then(
+                    function(doc){
+                        res.json(doc);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
+        } else {
+            videoModel.findallVideos()
+                .then(
+                    function(doc){
+                        res.json(doc);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
         }
+    }
 
     // find a video with a specific id
     function findVideoById(req, res){
@@ -53,10 +82,10 @@ module.exports = function(app, videoModel){
         res.json(video);
     }
 
-    // delete a video
+    // delete a video and return the rest of the videos
     function deleteVideo(req, res){
         var id = req.params.id;
-        var users = videoModel.deleteVideo(id);
-        res.json(users);
+        var remaining = videoModel.deleteVideo(id);
+        res.json(remaining);
     }
 }

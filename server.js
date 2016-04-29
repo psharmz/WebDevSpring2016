@@ -15,6 +15,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         process.env.OPENSHIFT_APP_NAME;
 }
 
+
 // connect to the database
 var db = mongoose.connect(connectionString);
 
@@ -33,6 +34,6 @@ app.use(multer());
 // require("./public/assignment/server/app.js")(app, db, mongoose);
 
 // for the final project
-require("./public/project/server/app.js")(app, db, mongoose, playerModel);
+require("./public/project/server/app.js")(app, db, mongoose);
 
 
