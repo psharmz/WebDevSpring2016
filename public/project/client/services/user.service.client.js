@@ -10,7 +10,7 @@
         .factory("UserService", UserService);
 
     function UserService($http){
-        var api = {
+        var model = {
             // used to log in an existing user 
             findUserByCredentials: findUserByCredentials,
     		// to find a user by email
@@ -19,11 +19,13 @@
             createUser: createUser, 
             // to update user information (this will be implemented later)
             updateUser: updateUser, 
-            // to delete an accoutn 
-            deleteUserById: deleteUserById
+            // to delete an account
+            deleteUserById: deleteUserById,
+            findAllUsers: findAllUsers
+           
         };
 
-        return api;
+        return model;
 
         function findUserByCredentials(email, password) {
             return $http.get ("/api/project/user?email=" + email + "&password=" + password);
@@ -45,8 +47,10 @@
             return $http.put ("/api/project/user/" + userId, user)
         }
 
+        function findAllUsers(){
+            return $http.get("/api/project/user");
+        }
+
     }
 })();
-
-// not sure if the urls are correct right now. will fix later 
 

@@ -12,7 +12,7 @@
         .factory("VideoService", VideoService);
 
     function VideoService($http){
-        var api = {
+        var model = {
             // used to search for a particular video 
             findVideoByTitle: findVideoByTitle,
     		// find all the videos for a particular course
@@ -27,7 +27,7 @@
             getAllVideos: getAllVideos
         };
 
-        return api;
+        return model;
 
         function findVideoByTitle(course, title) {
             return $http.get ("/api/project/video?title=" + title);
@@ -55,4 +55,6 @@
 
     }
 })();
+
+ 
 
