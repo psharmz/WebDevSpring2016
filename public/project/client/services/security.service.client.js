@@ -1,9 +1,9 @@
 (function(){
     angular
         .module("WaitWhatApp")
-        .factory("SecurityService", securityService);
+        .factory("SecurityService", SecurityService);
 
-    function securityService($http) {
+    function SecurityService($http) {
         var api = {
             register: register,
             login: login,

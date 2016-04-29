@@ -18,6 +18,12 @@
                 {
                     templateUrl: "views/home/home.view.html"
                 })
+            // on click take to register page 
+            .when("/register",
+                {
+                    templateUrl: "views/users/register.view.html",
+                    controller: "RegisterController"
+                })
             // dashboard for student
             // dashboard for student show a list of classes they are part of
             .when("/student",

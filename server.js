@@ -1,6 +1,7 @@
 #!/bin/env node
 var express = require('express');
 var app = express();
+var http = require('http');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -40,10 +41,17 @@ app.use(passport.session());
 // require("./public/assignment/server/app.js")(app, db, mongoose);
 
 // for the final project
-require("./public/project/server/app.js")(app, db, mongoose);
+// require("./public/project/server/app.js")(app, db, mongoose);
 
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+// app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
 app.listen(port, ipaddress);
+
+
+http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
+    console.log("✔ Express server listening at %s:%d ", app.get('ip'),app.get('port'));
+    server();
+});
 
